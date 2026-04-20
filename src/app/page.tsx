@@ -4,17 +4,21 @@ import { mockExpedientes } from '@/lib/mock-data';
 import { ESTADO_LABELS, ESTADO_COLORS, EstadoExpediente } from '@/lib/types';
 
 function formatCurrency(value: number) {
-  return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(value);
+  return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(value);
 }
 
-function StatCard({ label, value, sub, color }: { label: string; value: string | number; sub?: string; color: string }) {
+function KpiCard({ label, value, sub, borderColor }: { label: string; value: string | number; sub?: string; borderColor: string }) {
   return (
-    <div className={`bg-white rounded p-5 border border-gray-200 border-l-4 ${color}`}>
-      <div className="text-2xl font-bold text-[#1b2a4a]">{value}</div>
-      <div className="text-sm font-medium text-gray-700 mt-1">{label}</div>
+    <div className={`bg-white border border-gray-200 border-t-4 ${borderColor} p-5`}>
+      <div className="text-2xl font-bold text-[#1b2a4a] leading-tight">{value}</div>
+      <div className="text-sm font-semibold text-gray-700 mt-2">{label}</div>
       {sub && <div className="text-xs text-gray-400 mt-0.5">{sub}</div>}
     </div>
   );
+}
+
+function SectionTitle({ children }: { children: React.ReactNode }) {
+  return <h2 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">{children}</h2>;
 }
 
 export default function Dashboard() {
@@ -28,9 +32,9 @@ export default function Dashboard() {
     return acc;
   }, {} as Record<string, number>);
 
-  const alarmas = mockExpedientes.filter(e => e.tieneAlarma).sort((a, b) =>
-    (a.fechaVencimientoAlarma ?? '').localeCompare(b.fechaVencimientoAlarma ?? '')
-  );
+  const alarmas = mockExpedientes
+    .filter(e => e.tieneAlarma)
+    .sort((a, b) => (a.fechaVencimientoAlarma ?? '').localeCompare(b.fechaVencimientoAlarma ?? ''));
 
   const recientes = [...mockExpedientes]
     .sort((a, b) => b.fechaUltimaActuacion.localeCompare(a.fechaUltimaActuacion))
@@ -39,40 +43,38 @@ export default function Dashboard() {
   return (
     <div className="flex-1">
       <Header
-        title="Panel Principal"
+        title="Panel de Control"
         subtitle="Sistema de Expedientes Administrativos de Inspección Gremial y Obra Social"
         actions={
-          <Link
-            href="/expedientes/nuevo"
-            className="bg-[#0072BC] hover:bg-[#005f9e] text-white text-sm font-semibold px-4 py-2 rounded transition-colors flex items-center gap-2"
-          >
-            <span>＋</span> Nueva Inspección
+          <Link href="/expedientes/nuevo"
+            className="bg-[#0072BC] hover:bg-[#005f9e] text-white text-sm font-semibold px-4 py-2 transition-colors flex items-center gap-2">
+            + Nueva Inspección
           </Link>
         }
       />
 
-      <div className="p-6 space-y-6">
-        {/* KPI Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <StatCard label="Expedientes Activos" value={expedientesActivos} sub={`de ${totalExpedientes} totales`} color="border-blue-500" />
-          <StatCard label="Con Alarma Activa" value={expedientesConAlarma} sub="Próximos vencimientos" color="border-red-500" />
-          <StatCard label="Deuda Determinada" value={formatCurrency(totalDeuda)} sub="Capital + intereses" color="border-orange-500" />
-          <StatCard label="Finalizados" value={mockExpedientes.filter(e => e.estado === 'FINALIZADO').length} sub="Año 2025-2026" color="border-green-500" />
+      <div className="p-6 space-y-7 max-w-7xl">
+        <div>
+          <SectionTitle>Resumen General</SectionTitle>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <KpiCard label="Expedientes Activos" value={expedientesActivos} sub={`de ${totalExpedientes} en total`} borderColor="border-t-[#0072BC]" />
+            <KpiCard label="Con Alarma Activa" value={expedientesConAlarma} sub="Plazos próximos a vencer" borderColor="border-t-red-500" />
+            <KpiCard label="Deuda Determinada" value={formatCurrency(totalDeuda)} sub="Capital + intereses" borderColor="border-t-orange-500" />
+            <KpiCard label="Finalizados" value={mockExpedientes.filter(e => e.estado === 'FINALIZADO').length} sub="Pagados o archivados" borderColor="border-t-green-500" />
+          </div>
         </div>
 
-        {/* Quick Access */}
         <div>
-          <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Acceso Rápido</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <SectionTitle>Acceso Rápido</SectionTitle>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
             {[
-              { href: '/expedientes/nuevo', icon: '📄', label: 'Nueva Inspección', desc: 'Iniciar expediente', color: 'bg-blue-50 border-blue-200 hover:bg-blue-100' },
-              { href: '/rendicion', icon: '📊', label: 'Rendición de Cuentas', desc: 'Panel contable', color: 'bg-green-50 border-green-200 hover:bg-green-100' },
-              { href: '/consulta', icon: '🔍', label: 'Consulta', desc: 'Buscar y alarmas', color: 'bg-yellow-50 border-yellow-200 hover:bg-yellow-100' },
-              { href: '/autorizados', icon: '👥', label: 'Autorizados', desc: 'Gestión de accesos', color: 'bg-purple-50 border-purple-200 hover:bg-purple-100' },
+              { href: '/expedientes/nuevo', label: 'Nueva Inspección', desc: 'Iniciar un nuevo expediente', accent: 'border-l-[#0072BC] hover:bg-blue-50/50' },
+              { href: '/rendicion', label: 'Rendición de Cuentas', desc: 'Panel contable y financiero', accent: 'border-l-green-600 hover:bg-green-50/50' },
+              { href: '/consulta', label: 'Consulta y Alarmas', desc: 'Buscar expedientes y alertas', accent: 'border-l-orange-500 hover:bg-orange-50/50' },
+              { href: '/autorizados', label: 'Autorizados', desc: 'Gestión de usuarios y roles', accent: 'border-l-purple-600 hover:bg-purple-50/50' },
             ].map(item => (
               <Link key={item.href} href={item.href}
-                className={`${item.color} border rounded p-5 text-center transition-all`}>
-                <div className="text-3xl mb-2">{item.icon}</div>
+                className={`bg-white border border-gray-200 border-l-4 ${item.accent} p-4 transition-colors`}>
                 <div className="font-semibold text-[#1b2a4a] text-sm">{item.label}</div>
                 <div className="text-xs text-gray-500 mt-1">{item.desc}</div>
               </Link>
@@ -80,24 +82,18 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Estado de expedientes */}
-          <div className="bg-white rounded border border-gray-200 p-5">
-            <h2 className="font-semibold text-[#1b2a4a] mb-4 flex items-center gap-2">
-              <span>📋</span> Estado de Expedientes
-            </h2>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+          <div className="bg-white border border-gray-200 p-5">
+            <SectionTitle>Estado de Expedientes</SectionTitle>
             <div className="space-y-3">
               {Object.entries(porEstado).map(([estado, count]) => (
-                <div key={estado} className="flex items-center justify-between">
-                  <span className={`text-xs px-2 py-1 rounded-sm font-medium ${ESTADO_COLORS[estado as EstadoExpediente]}`}>
+                <div key={estado} className="flex items-center justify-between gap-3">
+                  <span className={`text-xs px-2 py-0.5 font-medium ${ESTADO_COLORS[estado as EstadoExpediente]}`}>
                     {ESTADO_LABELS[estado as EstadoExpediente]}
                   </span>
-                  <div className="flex items-center gap-2">
-                    <div className="w-24 bg-gray-100 rounded-sm h-1.5">
-                      <div
-                        className="bg-[#1b2a4a] h-1.5 rounded-sm"
-                        style={{ width: `${(count / totalExpedientes) * 100}%` }}
-                      />
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    <div className="w-20 bg-gray-100 h-1.5">
+                      <div className="bg-[#0072BC] h-1.5" style={{ width: `${(count / totalExpedientes) * 100}%` }} />
                     </div>
                     <span className="text-sm font-bold text-gray-700 w-4 text-right">{count}</span>
                   </div>
@@ -106,54 +102,41 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Alarmas */}
-          <div className="bg-white rounded border border-gray-200 p-5">
-            <h2 className="font-semibold text-[#1b2a4a] mb-4 flex items-center gap-2">
-              <span>🔔</span> Alarmas Próximas
-            </h2>
-            <div className="space-y-3">
-              {alarmas.length === 0 && (
-                <p className="text-sm text-gray-400 text-center py-4">Sin alarmas activas</p>
-              )}
+          <div className="bg-white border border-gray-200 p-5">
+            <SectionTitle>Alarmas Activas</SectionTitle>
+            <div className="space-y-2">
+              {alarmas.length === 0 && <p className="text-sm text-gray-400 py-4 text-center">Sin alarmas activas</p>}
               {alarmas.map(exp => {
-                const vence = exp.fechaVencimientoAlarma
-                  ? new Date(exp.fechaVencimientoAlarma + 'T00:00:00')
-                  : null;
-                const hoy = new Date();
-                const diasRestantes = vence
-                  ? Math.ceil((vence.getTime() - hoy.getTime()) / (1000 * 60 * 60 * 24))
-                  : null;
+                const vence = exp.fechaVencimientoAlarma ? new Date(exp.fechaVencimientoAlarma + 'T00:00:00') : null;
+                const diasRestantes = vence ? Math.ceil((vence.getTime() - Date.now()) / 86400000) : null;
                 const urgente = diasRestantes !== null && diasRestantes <= 3;
                 return (
                   <Link key={exp.id} href={`/expedientes/${exp.id}`}
-                    className="block border rounded p-3 hover:border-[#1b2a4a] transition-colors">
-                    <div className="flex justify-between items-start gap-2">
-                      <div className="text-xs font-semibold text-[#1b2a4a] truncate">{exp.numeroExpediente}</div>
-                      <span className={`text-xs px-1.5 py-0.5 rounded font-bold flex-shrink-0 ${urgente ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'}`}>
-                        {diasRestantes !== null ? (diasRestantes <= 0 ? 'VENCIDO' : `${diasRestantes}d`) : '-'}
-                      </span>
+                    className="flex items-center justify-between border border-gray-200 p-3 hover:border-[#0072BC] hover:bg-blue-50/30 transition-colors">
+                    <div className="min-w-0">
+                      <div className="text-xs font-bold text-[#1b2a4a] truncate">{exp.numeroExpediente}</div>
+                      <div className="text-xs text-gray-500 truncate mt-0.5">{exp.empresa.razonSocial}</div>
+                      <div className="text-[10px] text-gray-400 mt-0.5">Vence: {exp.fechaVencimientoAlarma}</div>
                     </div>
-                    <div className="text-xs text-gray-500 mt-1 truncate">{exp.empresa.razonSocial}</div>
-                    <div className="text-xs text-gray-400 mt-0.5">Vence: {exp.fechaVencimientoAlarma}</div>
+                    <span className={`text-xs px-2 py-1 font-bold flex-shrink-0 ml-2 ${urgente ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'}`}>
+                      {diasRestantes !== null ? (diasRestantes <= 0 ? 'VENCIDO' : `${diasRestantes}d`) : '—'}
+                    </span>
                   </Link>
                 );
               })}
             </div>
           </div>
 
-          {/* Actividad reciente */}
-          <div className="bg-white rounded border border-gray-200 p-5">
-            <h2 className="font-semibold text-[#1b2a4a] mb-4 flex items-center gap-2">
-              <span>⏱</span> Actividad Reciente
-            </h2>
-            <div className="space-y-3">
+          <div className="bg-white border border-gray-200 p-5">
+            <SectionTitle>Actividad Reciente</SectionTitle>
+            <div className="space-y-2">
               {recientes.map(exp => (
                 <Link key={exp.id} href={`/expedientes/${exp.id}`}
-                  className="block border rounded p-3 hover:border-[#1b2a4a] transition-colors">
-                  <div className="text-xs font-semibold text-[#1b2a4a]">{exp.numeroExpediente}</div>
+                  className="block border border-gray-200 p-3 hover:border-[#0072BC] hover:bg-blue-50/30 transition-colors">
+                  <div className="text-xs font-bold text-[#1b2a4a]">{exp.numeroExpediente}</div>
                   <div className="text-xs text-gray-600 mt-0.5 truncate">{exp.empresa.razonSocial}</div>
-                  <div className="flex items-center justify-between mt-1">
-                    <span className={`text-[10px] px-1.5 py-0.5 rounded-sm font-medium ${ESTADO_COLORS[exp.estado]}`}>
+                  <div className="flex items-center justify-between mt-1.5">
+                    <span className={`text-[10px] px-1.5 py-0.5 font-medium ${ESTADO_COLORS[exp.estado]}`}>
                       {ESTADO_LABELS[exp.estado]}
                     </span>
                     <span className="text-[10px] text-gray-400">{exp.fechaUltimaActuacion}</span>
@@ -161,8 +144,9 @@ export default function Dashboard() {
                 </Link>
               ))}
             </div>
-            <Link href="/expedientes" className="block text-center text-sm text-[#1b2a4a] font-medium mt-3 hover:underline">
-              Ver todos →
+            <Link href="/expedientes"
+              className="block text-center text-xs text-[#0072BC] font-semibold mt-3 py-2 border border-[#0072BC]/30 hover:bg-[#0072BC]/5 transition-colors">
+              Ver todos los expedientes
             </Link>
           </div>
         </div>
