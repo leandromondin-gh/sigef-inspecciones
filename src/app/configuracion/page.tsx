@@ -13,7 +13,7 @@ export default function ConfiguracionPage() {
           { icon: '📄', label: 'Plantillas de Documentos', desc: 'F.8000, F.7109, actas, etc.' },
           { icon: '🔐', label: 'Seguridad', desc: 'Contraseñas y accesos' },
         ].map(item => (
-          <div key={item.label} className="bg-white rounded-xl shadow-sm p-5 flex items-center gap-4 hover:shadow-md transition-shadow cursor-pointer">
+          <div key={item.label} className="bg-white rounded border border-gray-200 p-5 flex items-center gap-4 hover:border border-gray-200 transition-shadow cursor-pointer">
             <div className="text-3xl">{item.icon}</div>
             <div>
               <div className="font-semibold text-[#1a3a5c]">{item.label}</div>

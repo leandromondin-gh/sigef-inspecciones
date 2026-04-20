@@ -9,7 +9,7 @@ function formatCurrency(value: number) {
 
 function StatCard({ label, value, sub, color }: { label: string; value: string | number; sub?: string; color: string }) {
   return (
-    <div className={`bg-white rounded-xl p-5 shadow-sm border-l-4 ${color}`}>
+    <div className={`bg-white rounded p-5 border border-gray-200 border-l-4 ${color}`}>
       <div className="text-2xl font-bold text-[#1a3a5c]">{value}</div>
       <div className="text-sm font-medium text-gray-700 mt-1">{label}</div>
       {sub && <div className="text-xs text-gray-400 mt-0.5">{sub}</div>}
@@ -44,7 +44,7 @@ export default function Dashboard() {
         actions={
           <Link
             href="/expedientes/nuevo"
-            className="bg-[#0072BC] hover:bg-[#005f9e] text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors flex items-center gap-2"
+            className="bg-[#0072BC] hover:bg-[#005f9e] text-white text-sm font-semibold px-4 py-2 rounded transition-colors flex items-center gap-2"
           >
             <span>＋</span> Nueva Inspección
           </Link>
@@ -71,7 +71,7 @@ export default function Dashboard() {
               { href: '/autorizados', icon: '👥', label: 'Autorizados', desc: 'Gestión de accesos', color: 'bg-purple-50 border-purple-200 hover:bg-purple-100' },
             ].map(item => (
               <Link key={item.href} href={item.href}
-                className={`${item.color} border rounded-xl p-5 text-center transition-all`}>
+                className={`${item.color} border rounded p-5 text-center transition-all`}>
                 <div className="text-3xl mb-2">{item.icon}</div>
                 <div className="font-semibold text-[#1a3a5c] text-sm">{item.label}</div>
                 <div className="text-xs text-gray-500 mt-1">{item.desc}</div>
@@ -82,20 +82,20 @@ export default function Dashboard() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Estado de expedientes */}
-          <div className="bg-white rounded-xl shadow-sm p-5">
+          <div className="bg-white rounded border border-gray-200 p-5">
             <h2 className="font-semibold text-[#1a3a5c] mb-4 flex items-center gap-2">
               <span>📋</span> Estado de Expedientes
             </h2>
             <div className="space-y-3">
               {Object.entries(porEstado).map(([estado, count]) => (
                 <div key={estado} className="flex items-center justify-between">
-                  <span className={`text-xs px-2 py-1 rounded-full font-medium ${ESTADO_COLORS[estado as EstadoExpediente]}`}>
+                  <span className={`text-xs px-2 py-1 rounded-sm font-medium ${ESTADO_COLORS[estado as EstadoExpediente]}`}>
                     {ESTADO_LABELS[estado as EstadoExpediente]}
                   </span>
                   <div className="flex items-center gap-2">
-                    <div className="w-24 bg-gray-100 rounded-full h-1.5">
+                    <div className="w-24 bg-gray-100 rounded-sm h-1.5">
                       <div
-                        className="bg-[#1a3a5c] h-1.5 rounded-full"
+                        className="bg-[#1a3a5c] h-1.5 rounded-sm"
                         style={{ width: `${(count / totalExpedientes) * 100}%` }}
                       />
                     </div>
@@ -107,7 +107,7 @@ export default function Dashboard() {
           </div>
 
           {/* Alarmas */}
-          <div className="bg-white rounded-xl shadow-sm p-5">
+          <div className="bg-white rounded border border-gray-200 p-5">
             <h2 className="font-semibold text-[#1a3a5c] mb-4 flex items-center gap-2">
               <span>🔔</span> Alarmas Próximas
             </h2>
@@ -126,7 +126,7 @@ export default function Dashboard() {
                 const urgente = diasRestantes !== null && diasRestantes <= 3;
                 return (
                   <Link key={exp.id} href={`/expedientes/${exp.id}`}
-                    className="block border rounded-lg p-3 hover:border-[#1a3a5c] transition-colors">
+                    className="block border rounded p-3 hover:border-[#1a3a5c] transition-colors">
                     <div className="flex justify-between items-start gap-2">
                       <div className="text-xs font-semibold text-[#1a3a5c] truncate">{exp.numeroExpediente}</div>
                       <span className={`text-xs px-1.5 py-0.5 rounded font-bold flex-shrink-0 ${urgente ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'}`}>
@@ -142,18 +142,18 @@ export default function Dashboard() {
           </div>
 
           {/* Actividad reciente */}
-          <div className="bg-white rounded-xl shadow-sm p-5">
+          <div className="bg-white rounded border border-gray-200 p-5">
             <h2 className="font-semibold text-[#1a3a5c] mb-4 flex items-center gap-2">
               <span>⏱</span> Actividad Reciente
             </h2>
             <div className="space-y-3">
               {recientes.map(exp => (
                 <Link key={exp.id} href={`/expedientes/${exp.id}`}
-                  className="block border rounded-lg p-3 hover:border-[#1a3a5c] transition-colors">
+                  className="block border rounded p-3 hover:border-[#1a3a5c] transition-colors">
                   <div className="text-xs font-semibold text-[#1a3a5c]">{exp.numeroExpediente}</div>
                   <div className="text-xs text-gray-600 mt-0.5 truncate">{exp.empresa.razonSocial}</div>
                   <div className="flex items-center justify-between mt-1">
-                    <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${ESTADO_COLORS[exp.estado]}`}>
+                    <span className={`text-[10px] px-1.5 py-0.5 rounded-sm font-medium ${ESTADO_COLORS[exp.estado]}`}>
                       {ESTADO_LABELS[exp.estado]}
                     </span>
                     <span className="text-[10px] text-gray-400">{exp.fechaUltimaActuacion}</span>

@@ -114,10 +114,10 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
 
       <div className="p-6 space-y-5 max-w-6xl">
         {/* Estado / Progress */}
-        <div className="bg-white rounded-xl shadow-sm p-5">
+        <div className="bg-white rounded border border-gray-200 p-5">
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-semibold text-[#1a3a5c]">Estado del Expediente</h2>
-            <span className={`text-xs px-3 py-1 rounded-full font-semibold ${ESTADO_COLORS[expediente.estado]}`}>
+            <span className={`text-xs px-3 py-1 rounded-sm font-semibold ${ESTADO_COLORS[expediente.estado]}`}>
               {ESTADO_LABELS[expediente.estado]}
             </span>
           </div>
@@ -127,9 +127,9 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
               const completado = idx < estadoIdx;
               return (
                 <div key={estado} className="flex items-center gap-1 flex-shrink-0">
-                  <div className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                  <div className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${
                     activo
-                      ? 'bg-[#0072BC] text-white shadow-sm'
+                      ? 'bg-[#0072BC] text-white border border-gray-200'
                       : completado
                       ? 'bg-[#1a3a5c] text-white'
                       : 'bg-gray-100 text-gray-400'
@@ -150,7 +150,7 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
           {/* Datos del expediente */}
           <div className="lg:col-span-2 space-y-5">
             {/* Info principal */}
-            <div className="bg-white rounded-xl shadow-sm p-5">
+            <div className="bg-white rounded border border-gray-200 p-5">
               <h2 className="font-semibold text-[#1a3a5c] mb-4 pb-2 border-b border-gray-100">Datos del Expediente</h2>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
@@ -181,7 +181,7 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
             </div>
 
             {/* Empresa */}
-            <div className="bg-white rounded-xl shadow-sm p-5">
+            <div className="bg-white rounded border border-gray-200 p-5">
               <h2 className="font-semibold text-[#1a3a5c] mb-4 pb-2 border-b border-gray-100">Empresa Inspeccionada</h2>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div className="col-span-2">
@@ -204,7 +204,7 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
             </div>
 
             {/* Requirente */}
-            <div className="bg-white rounded-xl shadow-sm p-5">
+            <div className="bg-white rounded border border-gray-200 p-5">
               <h2 className="font-semibold text-[#1a3a5c] mb-4 pb-2 border-b border-gray-100">Requirente</h2>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div className="col-span-2">
@@ -226,7 +226,7 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
             </div>
 
             {/* Actuaciones */}
-            <div className="bg-white rounded-xl shadow-sm p-5">
+            <div className="bg-white rounded border border-gray-200 p-5">
               <h2 className="font-semibold text-[#1a3a5c] mb-4 pb-2 border-b border-gray-100">
                 Actuaciones ({actuaciones.length})
               </h2>
@@ -235,10 +235,10 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
                 <div className="space-y-4">
                   {actuaciones.map((act, idx) => (
                     <div key={idx} className="flex gap-4 pl-8 relative">
-                      <div className="absolute left-0 w-6 h-6 bg-[#1a3a5c] rounded-full flex items-center justify-center flex-shrink-0 text-white text-[10px] font-bold">
+                      <div className="absolute left-0 w-6 h-6 bg-[#1a3a5c] rounded-sm flex items-center justify-center flex-shrink-0 text-white text-[10px] font-bold">
                         {actuaciones.length - idx}
                       </div>
-                      <div className="flex-1 border border-gray-100 rounded-lg p-3 text-sm hover:border-gray-200 transition-colors">
+                      <div className="flex-1 border border-gray-100 rounded p-3 text-sm hover:border-gray-200 transition-colors">
                         <div className="flex justify-between items-start gap-2 mb-1">
                           <span className="text-xs font-bold text-[#1a3a5c] uppercase tracking-wide">{act.tipo}</span>
                           <span className="text-xs text-gray-400 whitespace-nowrap">{act.fecha}</span>
@@ -257,7 +257,7 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
           <div className="space-y-5">
             {/* Deuda */}
             {expediente.montoDeuda !== undefined && (
-              <div className={`rounded-xl shadow-sm p-5 ${expediente.montoDeuda === 0 ? 'bg-green-50 border border-green-200' : 'bg-orange-50 border border-orange-200'}`}>
+              <div className={`rounded border border-gray-200 p-5 ${expediente.montoDeuda === 0 ? 'bg-green-50 border border-green-200' : 'bg-orange-50 border border-orange-200'}`}>
                 <h2 className="font-semibold text-[#1a3a5c] mb-2">Deuda Determinada</h2>
                 <div className={`text-2xl font-bold ${expediente.montoDeuda === 0 ? 'text-green-600' : 'text-orange-600'}`}>
                   {expediente.montoDeuda === 0 ? 'PAGADO' : formatCurrency(expediente.montoDeuda)}
@@ -270,7 +270,7 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
 
             {/* Alarma */}
             {expediente.tieneAlarma && expediente.fechaVencimientoAlarma && (
-              <div className="bg-red-50 border border-red-200 rounded-xl shadow-sm p-5">
+              <div className="bg-red-50 border border-red-200 rounded border border-gray-200 p-5">
                 <h2 className="font-semibold text-red-700 mb-2 flex items-center gap-2">
                   <span>🔔</span> Alarma Activa
                 </h2>
@@ -281,13 +281,13 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
 
             {/* Acciones */}
             {acciones.length > 0 && (
-              <div className="bg-white rounded-xl shadow-sm p-5">
+              <div className="bg-white rounded border border-gray-200 p-5">
                 <h2 className="font-semibold text-[#1a3a5c] mb-3">Acciones Disponibles</h2>
                 <div className="space-y-2">
                   {acciones.map((accion, idx) => (
                     <button
                       key={idx}
-                      className={`w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-white transition-colors ${accion.color}`}
+                      className={`w-full text-left px-4 py-2.5 rounded text-sm font-medium text-white transition-colors ${accion.color}`}
                     >
                       {accion.label}
                     </button>
@@ -297,7 +297,7 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
             )}
 
             {/* Documentos */}
-            <div className="bg-white rounded-xl shadow-sm p-5">
+            <div className="bg-white rounded border border-gray-200 p-5">
               <h2 className="font-semibold text-[#1a3a5c] mb-3">Documentos Generados</h2>
               <div className="space-y-2 text-sm">
                 {[
@@ -305,7 +305,7 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
                   { nombre: 'F.8000 - Inicio Inspección', fecha: expediente.fechaInicio, tipo: 'DOCX' },
                   ...(expediente.montoDeuda ? [{ nombre: 'F.7109 - Determinación', fecha: expediente.fechaUltimaActuacion, tipo: 'DOCX' }] : []),
                 ].map((doc, idx) => (
-                  <div key={idx} className="flex items-center justify-between border border-gray-100 rounded-lg p-2.5 hover:border-gray-200">
+                  <div key={idx} className="flex items-center justify-between border border-gray-100 rounded p-2.5 hover:border-gray-200">
                     <div>
                       <div className="font-medium text-gray-700 text-xs">{doc.nombre}</div>
                       <div className="text-[10px] text-gray-400">{doc.fecha}</div>

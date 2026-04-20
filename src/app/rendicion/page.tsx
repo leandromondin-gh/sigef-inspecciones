@@ -16,21 +16,21 @@ export default function RendicionPage() {
       <Header title="Rendición de Cuentas" subtitle="Panel contable y financiero" />
       <div className="p-6 space-y-6">
         <div className="grid grid-cols-3 gap-4">
-          <div className="bg-white rounded-xl shadow-sm p-5 border-l-4 border-orange-500">
+          <div className="bg-white rounded border border-gray-200 p-5 border-l-4 border-orange-500">
             <div className="text-2xl font-bold text-[#1a3a5c]">{formatCurrency(totalDeuda)}</div>
             <div className="text-sm text-gray-600 mt-1">Deuda Total Determinada</div>
           </div>
-          <div className="bg-white rounded-xl shadow-sm p-5 border-l-4 border-teal-500">
+          <div className="bg-white rounded border border-gray-200 p-5 border-l-4 border-teal-500">
             <div className="text-2xl font-bold text-[#1a3a5c]">{enGestion.length}</div>
             <div className="text-sm text-gray-600 mt-1">En Gestión de Cobro</div>
           </div>
-          <div className="bg-white rounded-xl shadow-sm p-5 border-l-4 border-green-500">
+          <div className="bg-white rounded border border-gray-200 p-5 border-l-4 border-green-500">
             <div className="text-2xl font-bold text-[#1a3a5c]">{cobrados.length}</div>
             <div className="text-sm text-gray-600 mt-1">Expedientes Cobrados</div>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm p-5">
+        <div className="bg-white rounded border border-gray-200 p-5">
           <h2 className="font-semibold text-[#1a3a5c] mb-4">Deuda por Expediente</h2>
           <table className="w-full text-sm">
             <thead>
@@ -54,7 +54,7 @@ export default function RendicionPage() {
           </table>
         </div>
 
-        <div className="bg-blue-50 border border-blue-200 rounded-xl p-5 text-sm text-blue-700">
+        <div className="bg-blue-50 border border-blue-200 rounded p-5 text-sm text-blue-700">
           <strong>Próximamente:</strong> Panel completo con gráficos de recaudación, planes de pago activos,
           vencimientos de cuotas, y exportación a Excel/PDF.
         </div>

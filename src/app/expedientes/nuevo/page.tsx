@@ -52,21 +52,21 @@ export default function NuevaInspeccionPage() {
       <div className="flex-1">
         <Header title="Nueva Inspección" subtitle="Estado A - Inicio" />
         <div className="p-6 flex items-center justify-center min-h-96">
-          <div className="bg-white rounded-2xl shadow-sm p-10 text-center max-w-md">
+          <div className="bg-white rounded-md border border-gray-200 p-10 text-center max-w-md">
             <div className="text-5xl mb-4">✅</div>
             <h2 className="text-xl font-bold text-[#1a3a5c] mb-2">¡Expediente iniciado!</h2>
             <p className="text-gray-600 mb-2">Se generó el número de expediente automáticamente:</p>
-            <div className="bg-[#1a3a5c] text-white rounded-lg px-6 py-3 text-lg font-bold mb-4">
+            <div className="bg-[#1a3a5c] text-white rounded px-6 py-3 text-lg font-bold mb-4">
               SIGEF-2026-00008
             </div>
             <p className="text-sm text-gray-500 mb-6">
               El sistema generó automáticamente el folio inicial y el auto de inicio (F.8000).
             </p>
             <div className="flex gap-3 justify-center">
-              <Link href="/expedientes" className="border border-[#1a3a5c] text-[#1a3a5c] px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-50">
+              <Link href="/expedientes" className="border border-[#1a3a5c] text-[#1a3a5c] px-4 py-2 rounded text-sm font-medium hover:bg-gray-50">
                 Ver todos
               </Link>
-              <Link href="/expedientes/exp-001" className="bg-[#1a3a5c] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#2a4a6c]">
+              <Link href="/expedientes/exp-001" className="bg-[#1a3a5c] text-white px-4 py-2 rounded text-sm font-medium hover:bg-[#2a4a6c]">
                 Abrir expediente →
               </Link>
             </div>
@@ -94,7 +94,7 @@ export default function NuevaInspeccionPage() {
           {pasos.map((p, idx) => (
             <div key={p.num} className="flex items-center flex-1">
               <div className="flex items-center gap-2">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${
+                <div className={`w-8 h-8 rounded-sm flex items-center justify-center text-sm font-bold transition-colors ${
                   paso === p.num
                     ? 'bg-[#0072BC] text-white'
                     : paso > p.num
@@ -114,7 +114,7 @@ export default function NuevaInspeccionPage() {
           ))}
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm p-6">
+        <div className="bg-white rounded border border-gray-200 p-6">
           {/* Paso 1: Requirente */}
           {paso === 1 && (
             <div>
@@ -126,7 +126,7 @@ export default function NuevaInspeccionPage() {
                   <select
                     value={form.requirente}
                     onChange={e => handleChange('requirente', e.target.value)}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c] bg-white"
+                    className="w-full border border-gray-200 rounded px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c] bg-white"
                   >
                     <option value="">Seleccionar requirente...</option>
                     {mockRequirentes.map(r => (
@@ -136,7 +136,7 @@ export default function NuevaInspeccionPage() {
                 </div>
 
                 {requirenteSeleccionado && (
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm">
+                  <div className="bg-blue-50 border border-blue-200 rounded p-4 text-sm">
                     <div className="font-semibold text-[#1a3a5c] mb-2">{requirenteSeleccionado.nombre}</div>
                     <div className="grid grid-cols-2 gap-2 text-gray-600">
                       <div><span className="font-medium">Tipo:</span> {requirenteSeleccionado.tipo === 'SINDICATO' ? 'Sindicato' : 'Obra Social'}</div>
@@ -153,7 +153,7 @@ export default function NuevaInspeccionPage() {
                     onChange={e => handleChange('observaciones', e.target.value)}
                     rows={3}
                     placeholder="Motivo de la inspección, antecedentes relevantes..."
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c] resize-none"
+                    className="w-full border border-gray-200 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c] resize-none"
                   />
                 </div>
               </div>
@@ -174,7 +174,7 @@ export default function NuevaInspeccionPage() {
                       value={form.razonSocial}
                       onChange={e => handleChange('razonSocial', e.target.value)}
                       placeholder="Ej: TECNOLOGÍAS DEL SUR S.A."
-                      className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c]"
+                      className="w-full border border-gray-200 rounded px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c]"
                     />
                   </div>
                   <div>
@@ -184,7 +184,7 @@ export default function NuevaInspeccionPage() {
                       value={form.cuit}
                       onChange={e => handleChange('cuit', e.target.value)}
                       placeholder="30-XXXXXXXX-X"
-                      className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c]"
+                      className="w-full border border-gray-200 rounded px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c]"
                     />
                   </div>
                   <div>
@@ -194,7 +194,7 @@ export default function NuevaInspeccionPage() {
                       value={form.actividadPrincipal}
                       onChange={e => handleChange('actividadPrincipal', e.target.value)}
                       placeholder="Ej: Desarrollo de Software"
-                      className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c]"
+                      className="w-full border border-gray-200 rounded px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c]"
                     />
                   </div>
                   <div className="col-span-2">
@@ -204,7 +204,7 @@ export default function NuevaInspeccionPage() {
                       value={form.domicilioLegal}
                       onChange={e => handleChange('domicilioLegal', e.target.value)}
                       placeholder="Calle, número, localidad"
-                      className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c]"
+                      className="w-full border border-gray-200 rounded px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c]"
                     />
                   </div>
                   <div className="col-span-2">
@@ -214,7 +214,7 @@ export default function NuevaInspeccionPage() {
                       value={form.domicilioComercial}
                       onChange={e => handleChange('domicilioComercial', e.target.value)}
                       placeholder="Si difiere del domicilio legal"
-                      className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c]"
+                      className="w-full border border-gray-200 rounded px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c]"
                     />
                   </div>
                 </div>
@@ -233,7 +233,7 @@ export default function NuevaInspeccionPage() {
                   <select
                     value={form.cct}
                     onChange={e => handleChange('cct', e.target.value)}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c] bg-white"
+                    className="w-full border border-gray-200 rounded px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c] bg-white"
                   >
                     <option value="">Seleccionar CCT...</option>
                     <option value="CCT 547/03">CCT 547/03 - Empleados Comercio</option>
@@ -250,7 +250,7 @@ export default function NuevaInspeccionPage() {
                   <select
                     value={form.inspector}
                     onChange={e => handleChange('inspector', e.target.value)}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c] bg-white"
+                    className="w-full border border-gray-200 rounded px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c] bg-white"
                   >
                     <option value="">Seleccionar inspector...</option>
                     {mockInspectores.map(i => (
@@ -260,7 +260,7 @@ export default function NuevaInspeccionPage() {
                     ))}
                   </select>
                 </div>
-                <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 text-sm">
+                <div className="bg-amber-50 border border-amber-200 rounded p-4 text-sm">
                   <div className="font-semibold text-amber-800 mb-1">📋 Documentación a requerir (Estado B)</div>
                   <p className="text-amber-700 text-xs">
                     Una vez iniciado el expediente, el sistema generará automáticamente el auto de inicio y el F.8000.
@@ -278,14 +278,14 @@ export default function NuevaInspeccionPage() {
               <h2 className="text-base font-bold text-[#1a3a5c] mb-1">Confirmación</h2>
               <p className="text-sm text-gray-500 mb-5">Revisá los datos antes de iniciar el expediente</p>
               <div className="space-y-4">
-                <div className="border rounded-lg overflow-hidden">
+                <div className="border rounded overflow-hidden">
                   <div className="bg-[#1a3a5c] text-white px-4 py-2 text-xs font-semibold uppercase tracking-wide">Requirente</div>
                   <div className="p-4 text-sm">
                     <div className="font-medium">{requirenteSeleccionado?.nombre || '—'}</div>
                     <div className="text-gray-500">{requirenteSeleccionado?.tipo === 'SINDICATO' ? 'Sindicato' : 'Obra Social'} — CUIT {requirenteSeleccionado?.cuit}</div>
                   </div>
                 </div>
-                <div className="border rounded-lg overflow-hidden">
+                <div className="border rounded overflow-hidden">
                   <div className="bg-[#1a3a5c] text-white px-4 py-2 text-xs font-semibold uppercase tracking-wide">Empresa Inspeccionada</div>
                   <div className="p-4 text-sm grid grid-cols-2 gap-2">
                     <div><span className="text-gray-500">Razón Social:</span> <span className="font-medium">{form.razonSocial || '—'}</span></div>
@@ -294,14 +294,14 @@ export default function NuevaInspeccionPage() {
                     <div className="col-span-2"><span className="text-gray-500">Actividad:</span> <span className="font-medium">{form.actividadPrincipal || '—'}</span></div>
                   </div>
                 </div>
-                <div className="border rounded-lg overflow-hidden">
+                <div className="border rounded overflow-hidden">
                   <div className="bg-[#1a3a5c] text-white px-4 py-2 text-xs font-semibold uppercase tracking-wide">CCT e Inspector</div>
                   <div className="p-4 text-sm grid grid-cols-2 gap-2">
                     <div><span className="text-gray-500">CCT:</span> <span className="font-medium">{form.cct || '—'}</span></div>
                     <div><span className="text-gray-500">Inspector:</span> <span className="font-medium">{inspectorSeleccionado ? `${inspectorSeleccionado.apellido}, ${inspectorSeleccionado.nombre}` : '—'}</span></div>
                   </div>
                 </div>
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm">
+                <div className="bg-blue-50 border border-blue-200 rounded p-4 text-sm">
                   <span className="font-semibold text-blue-800">Número asignado automáticamente:</span>
                   <span className="ml-2 font-bold text-[#1a3a5c]">SIGEF-2026-00008</span>
                   <div className="text-xs text-blue-600 mt-1">Se generarán: auto de inicio, folio 1, carátula y formulario F.8000.</div>
@@ -315,7 +315,7 @@ export default function NuevaInspeccionPage() {
             <button
               onClick={anterior}
               disabled={paso === 1}
-              className="px-5 py-2 border border-gray-200 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed"
+              className="px-5 py-2 border border-gray-200 rounded text-sm font-medium text-gray-600 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed"
             >
               ← Anterior
             </button>
@@ -323,14 +323,14 @@ export default function NuevaInspeccionPage() {
               <button
                 onClick={siguiente}
                 disabled={paso === 1 && !form.requirente}
-                className="px-5 py-2 bg-[#1a3a5c] text-white rounded-lg text-sm font-semibold hover:bg-[#2a4a6c] disabled:opacity-40 disabled:cursor-not-allowed"
+                className="px-5 py-2 bg-[#1a3a5c] text-white rounded text-sm font-semibold hover:bg-[#2a4a6c] disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 Siguiente →
               </button>
             ) : (
               <button
                 onClick={handleGuardar}
-                className="px-6 py-2 bg-[#0072BC] text-white rounded-lg text-sm font-bold hover:bg-[#005f9e]"
+                className="px-6 py-2 bg-[#0072BC] text-white rounded text-sm font-bold hover:bg-[#005f9e]"
               >
                 ✓ Iniciar Expediente
               </button>

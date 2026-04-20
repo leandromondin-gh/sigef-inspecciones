@@ -39,7 +39,7 @@ export default function ExpedientesPage() {
         actions={
           <Link
             href="/expedientes/nuevo"
-            className="bg-[#0072BC] hover:bg-[#005f9e] text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors flex items-center gap-2"
+            className="bg-[#0072BC] hover:bg-[#005f9e] text-white text-sm font-semibold px-4 py-2 rounded transition-colors flex items-center gap-2"
           >
             <span>＋</span> Nueva Inspección
           </Link>
@@ -48,7 +48,7 @@ export default function ExpedientesPage() {
 
       <div className="p-6">
         {/* Filtros */}
-        <div className="bg-white rounded-xl shadow-sm p-4 mb-6 flex flex-wrap gap-3 items-end">
+        <div className="bg-white rounded border border-gray-200 p-4 mb-6 flex flex-wrap gap-3 items-end">
           <div className="flex-1 min-w-64">
             <label className="block text-xs font-medium text-gray-500 mb-1.5">Buscar</label>
             <input
@@ -56,7 +56,7 @@ export default function ExpedientesPage() {
               placeholder="N° expediente, empresa, CUIT, carátula..."
               value={busqueda}
               onChange={e => setBusqueda(e.target.value)}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c]"
+              className="w-full border border-gray-200 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c]"
             />
           </div>
           <div>
@@ -64,7 +64,7 @@ export default function ExpedientesPage() {
             <select
               value={filtroEstado}
               onChange={e => setFiltroEstado(e.target.value as EstadoExpediente | 'TODOS')}
-              className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c] bg-white"
+              className="border border-gray-200 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c] bg-white"
             >
               <option value="TODOS">Todos los estados</option>
               {Object.entries(ESTADO_LABELS).map(([key, label]) => (
@@ -77,7 +77,7 @@ export default function ExpedientesPage() {
             <select
               value={filtroInspector}
               onChange={e => setFiltroInspector(e.target.value)}
-              className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c] bg-white"
+              className="border border-gray-200 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c] bg-white"
             >
               <option value="TODOS">Todos</option>
               {inspectores.map(i => (
@@ -88,7 +88,7 @@ export default function ExpedientesPage() {
           {(busqueda || filtroEstado !== 'TODOS' || filtroInspector !== 'TODOS') && (
             <button
               onClick={() => { setBusqueda(''); setFiltroEstado('TODOS'); setFiltroInspector('TODOS'); }}
-              className="px-3 py-2 text-sm text-gray-500 hover:text-gray-700 border border-gray-200 rounded-lg hover:bg-gray-50"
+              className="px-3 py-2 text-sm text-gray-500 hover:text-gray-700 border border-gray-200 rounded hover:bg-gray-50"
             >
               Limpiar
             </button>
@@ -96,7 +96,7 @@ export default function ExpedientesPage() {
         </div>
 
         {/* Tabla */}
-        <div className="bg-white rounded-xl shadow-sm overflow-x-auto">
+        <div className="bg-white rounded border border-gray-200 overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="bg-[#1a3a5c] text-white">
@@ -139,7 +139,7 @@ export default function ExpedientesPage() {
                     {exp.inspector.apellido}, {exp.inspector.nombre}
                   </td>
                   <td className="px-4 py-3">
-                    <span className={`text-xs px-2 py-1 rounded-full font-medium whitespace-nowrap ${ESTADO_COLORS[exp.estado]}`}>
+                    <span className={`text-xs px-2 py-1 rounded-sm font-medium whitespace-nowrap ${ESTADO_COLORS[exp.estado]}`}>
                       {ESTADO_LABELS[exp.estado]}
                     </span>
                   </td>
