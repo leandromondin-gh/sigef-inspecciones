@@ -23,21 +23,21 @@ export default function ConsultaPage() {
       <Header title="Consulta / Alarmas" subtitle="Búsqueda de expedientes y alertas de vencimiento" />
       <div className="p-6 space-y-6">
         <div className="bg-white rounded border border-gray-200 p-5">
-          <h2 className="font-semibold text-[#1a3a5c] mb-3">Búsqueda de Expedientes</h2>
+          <h2 className="font-semibold text-[#1b2a4a] mb-3">Búsqueda de Expedientes</h2>
           <input
             type="text"
             value={busqueda}
             onChange={e => setBusqueda(e.target.value)}
             placeholder="Buscar por N° expediente, empresa o CUIT..."
-            className="w-full border border-gray-200 rounded px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30"
+            className="w-full border border-gray-200 rounded px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1b2a4a]/30"
           />
           {resultados.length > 0 && (
             <div className="mt-3 space-y-2">
               {resultados.map(exp => (
                 <Link key={exp.id} href={`/expedientes/${exp.id}`}
-                  className="flex items-center justify-between border rounded p-3 hover:border-[#1a3a5c] transition-colors">
+                  className="flex items-center justify-between border rounded p-3 hover:border-[#1b2a4a] transition-colors">
                   <div>
-                    <div className="font-semibold text-sm text-[#1a3a5c]">{exp.numeroExpediente}</div>
+                    <div className="font-semibold text-sm text-[#1b2a4a]">{exp.numeroExpediente}</div>
                     <div className="text-xs text-gray-500">{exp.empresa.razonSocial} — {exp.empresa.cuit}</div>
                   </div>
                   <span className={`text-xs px-2 py-1 rounded-sm ${ESTADO_COLORS[exp.estado]}`}>
@@ -53,7 +53,7 @@ export default function ConsultaPage() {
         </div>
 
         <div className="bg-white rounded border border-gray-200 p-5">
-          <h2 className="font-semibold text-[#1a3a5c] mb-4 flex items-center gap-2">
+          <h2 className="font-semibold text-[#1b2a4a] mb-4 flex items-center gap-2">
             <span>🔔</span> Alarmas Activas ({alarmas.length})
           </h2>
           <div className="space-y-3">
@@ -63,9 +63,9 @@ export default function ConsultaPage() {
               const urgente = diasRestantes !== null && diasRestantes <= 3;
               return (
                 <Link key={exp.id} href={`/expedientes/${exp.id}`}
-                  className="flex items-center justify-between border rounded p-4 hover:border-[#1a3a5c] transition-colors">
+                  className="flex items-center justify-between border rounded p-4 hover:border-[#1b2a4a] transition-colors">
                   <div>
-                    <div className="font-semibold text-sm text-[#1a3a5c]">{exp.numeroExpediente}</div>
+                    <div className="font-semibold text-sm text-[#1b2a4a]">{exp.numeroExpediente}</div>
                     <div className="text-xs text-gray-600 mt-0.5">{exp.empresa.razonSocial}</div>
                     <div className="text-xs text-gray-400 mt-0.5">Vence: {exp.fechaVencimientoAlarma}</div>
                   </div>

@@ -31,7 +31,7 @@ export default function AutorizadosPage() {
         <div className="bg-white rounded border border-gray-200 overflow-hidden">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-[#1a3a5c] text-white">
+              <tr className="bg-gray-100 text-gray-600 border-b-2 border-[#1b2a4a]">
                 <th className="text-left px-4 py-3 font-semibold text-xs uppercase">Nombre</th>
                 <th className="text-left px-4 py-3 font-semibold text-xs uppercase">Email</th>
                 <th className="text-left px-4 py-3 font-semibold text-xs uppercase">Rol</th>
@@ -44,7 +44,7 @@ export default function AutorizadosPage() {
                 <tr key={usuario.id} className="hover:bg-gray-50">
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-[#1a3a5c] rounded-sm flex items-center justify-center text-white text-xs font-bold">
+                      <div className="w-8 h-8 bg-[#1b2a4a] rounded-sm flex items-center justify-center text-white text-xs font-bold">
                         {usuario.nombre[0]}{usuario.apellido[0]}
                       </div>
                       <div>
@@ -62,7 +62,7 @@ export default function AutorizadosPage() {
                     <span className="text-xs px-2 py-1 rounded-sm font-medium bg-green-100 text-green-700">Activo</span>
                   </td>
                   <td className="px-4 py-3">
-                    <button className="text-xs text-gray-500 hover:text-[#1a3a5c] border border-gray-200 rounded px-2 py-1">
+                    <button className="text-xs text-gray-500 hover:text-[#1b2a4a] border border-gray-200 rounded px-2 py-1">
                       Editar
                     </button>
                   </td>

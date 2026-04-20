@@ -23,13 +23,13 @@ const ACCIONES_POR_ESTADO: Record<EstadoExpediente, { label: string; color: stri
   A_INICIO: [
     { label: '📄 Generar Auto de Inicio', color: 'bg-blue-600 hover:bg-blue-700' },
     { label: '📋 Generar F.8000', color: 'bg-blue-600 hover:bg-blue-700' },
-    { label: '→ Pasar a Instrucción', color: 'bg-[#1a3a5c] hover:bg-[#2a4a6c]' },
+    { label: '→ Pasar a Instrucción', color: 'bg-[#1b2a4a] hover:bg-[#243659]' },
   ],
   B_INSTRUCCION: [
     { label: '🔍 Consulta ARCA', color: 'bg-purple-600 hover:bg-purple-700' },
     { label: '📧 Generar Requerimiento', color: 'bg-blue-600 hover:bg-blue-700' },
     { label: '📊 Cargar Acta Sindical', color: 'bg-blue-600 hover:bg-blue-700' },
-    { label: '→ Pasar a Determinación', color: 'bg-[#1a3a5c] hover:bg-[#2a4a6c]' },
+    { label: '→ Pasar a Determinación', color: 'bg-[#1b2a4a] hover:bg-[#243659]' },
   ],
   C_DETERMINACION: [
     { label: '🧮 Calcular Deuda (F.7109)', color: 'bg-orange-600 hover:bg-orange-700' },
@@ -39,12 +39,12 @@ const ACCIONES_POR_ESTADO: Record<EstadoExpediente, { label: string; color: stri
   ],
   C1_DEUDA_CONSENTIDA: [
     { label: '📄 Generar Res. Consentimiento', color: 'bg-purple-600 hover:bg-purple-700' },
-    { label: '→ Pasar a Cobro/Cierre', color: 'bg-[#1a3a5c] hover:bg-[#2a4a6c]' },
+    { label: '→ Pasar a Cobro/Cierre', color: 'bg-[#1b2a4a] hover:bg-[#243659]' },
   ],
   C2_IMPUGNACION: [
     { label: '📥 Registrar Impugnación', color: 'bg-red-600 hover:bg-red-700' },
     { label: '⚖️ Resolver Impugnación', color: 'bg-red-600 hover:bg-red-700' },
-    { label: '→ Pasar a Cobro/Cierre', color: 'bg-[#1a3a5c] hover:bg-[#2a4a6c]' },
+    { label: '→ Pasar a Cobro/Cierre', color: 'bg-[#1b2a4a] hover:bg-[#243659]' },
   ],
   D_COBRO_CIERRE: [
     { label: '🤝 Registrar Plan de Pago', color: 'bg-teal-600 hover:bg-teal-700' },
@@ -86,8 +86,8 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
       <div className="flex-1 flex items-center justify-center">
         <div className="text-center">
           <div className="text-4xl mb-3">😕</div>
-          <h2 className="text-xl font-bold text-[#1a3a5c] mb-2">Expediente no encontrado</h2>
-          <Link href="/expedientes" className="text-sm text-[#1a3a5c] underline">Volver a la lista</Link>
+          <h2 className="text-xl font-bold text-[#1b2a4a] mb-2">Expediente no encontrado</h2>
+          <Link href="/expedientes" className="text-sm text-[#1b2a4a] underline">Volver a la lista</Link>
         </div>
       </div>
     );
@@ -106,7 +106,7 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
         title={expediente.numeroExpediente}
         subtitle={expediente.caratula}
         actions={
-          <Link href="/expedientes" className="text-sm text-gray-500 hover:text-[#1a3a5c]">
+          <Link href="/expedientes" className="text-sm text-gray-500 hover:text-[#1b2a4a]">
             ← Volver
           </Link>
         }
@@ -116,7 +116,7 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
         {/* Estado / Progress */}
         <div className="bg-white rounded border border-gray-200 p-5">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="font-semibold text-[#1a3a5c]">Estado del Expediente</h2>
+            <h2 className="font-semibold text-[#1b2a4a]">Estado del Expediente</h2>
             <span className={`text-xs px-3 py-1 rounded-sm font-semibold ${ESTADO_COLORS[expediente.estado]}`}>
               {ESTADO_LABELS[expediente.estado]}
             </span>
@@ -131,14 +131,14 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
                     activo
                       ? 'bg-[#0072BC] text-white border border-gray-200'
                       : completado
-                      ? 'bg-[#1a3a5c] text-white'
+                      ? 'bg-[#1b2a4a] text-white'
                       : 'bg-gray-100 text-gray-400'
                   }`}>
                     {ESTADO_LABELS[estado]}
                     {activo && <span className="ml-1">●</span>}
                   </div>
                   {idx < ESTADOS_ORDEN.length - 1 && (
-                    <div className={`w-4 h-0.5 ${completado ? 'bg-[#1a3a5c]' : 'bg-gray-200'}`} />
+                    <div className={`w-4 h-0.5 ${completado ? 'bg-[#1b2a4a]' : 'bg-gray-200'}`} />
                   )}
                 </div>
               );
@@ -151,11 +151,11 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
           <div className="lg:col-span-2 space-y-5">
             {/* Info principal */}
             <div className="bg-white rounded border border-gray-200 p-5">
-              <h2 className="font-semibold text-[#1a3a5c] mb-4 pb-2 border-b border-gray-100">Datos del Expediente</h2>
+              <h2 className="font-semibold text-[#1b2a4a] mb-4 pb-2 border-b border-gray-100">Datos del Expediente</h2>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
                   <div className="text-xs text-gray-400 uppercase tracking-wide mb-0.5">N° Expediente</div>
-                  <div className="font-bold text-[#1a3a5c]">{expediente.numeroExpediente}</div>
+                  <div className="font-bold text-[#1b2a4a]">{expediente.numeroExpediente}</div>
                 </div>
                 <div>
                   <div className="text-xs text-gray-400 uppercase tracking-wide mb-0.5">Fecha de Inicio</div>
@@ -182,7 +182,7 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
 
             {/* Empresa */}
             <div className="bg-white rounded border border-gray-200 p-5">
-              <h2 className="font-semibold text-[#1a3a5c] mb-4 pb-2 border-b border-gray-100">Empresa Inspeccionada</h2>
+              <h2 className="font-semibold text-[#1b2a4a] mb-4 pb-2 border-b border-gray-100">Empresa Inspeccionada</h2>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div className="col-span-2">
                   <div className="text-xs text-gray-400 uppercase tracking-wide mb-0.5">Razón Social</div>
@@ -205,7 +205,7 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
 
             {/* Requirente */}
             <div className="bg-white rounded border border-gray-200 p-5">
-              <h2 className="font-semibold text-[#1a3a5c] mb-4 pb-2 border-b border-gray-100">Requirente</h2>
+              <h2 className="font-semibold text-[#1b2a4a] mb-4 pb-2 border-b border-gray-100">Requirente</h2>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div className="col-span-2">
                   <div className="font-bold text-gray-800">{expediente.requirente.nombre}</div>
@@ -227,7 +227,7 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
 
             {/* Actuaciones */}
             <div className="bg-white rounded border border-gray-200 p-5">
-              <h2 className="font-semibold text-[#1a3a5c] mb-4 pb-2 border-b border-gray-100">
+              <h2 className="font-semibold text-[#1b2a4a] mb-4 pb-2 border-b border-gray-100">
                 Actuaciones ({actuaciones.length})
               </h2>
               <div className="relative">
@@ -235,12 +235,12 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
                 <div className="space-y-4">
                   {actuaciones.map((act, idx) => (
                     <div key={idx} className="flex gap-4 pl-8 relative">
-                      <div className="absolute left-0 w-6 h-6 bg-[#1a3a5c] rounded-sm flex items-center justify-center flex-shrink-0 text-white text-[10px] font-bold">
+                      <div className="absolute left-0 w-6 h-6 bg-[#1b2a4a] rounded-sm flex items-center justify-center flex-shrink-0 text-white text-[10px] font-bold">
                         {actuaciones.length - idx}
                       </div>
                       <div className="flex-1 border border-gray-100 rounded p-3 text-sm hover:border-gray-200 transition-colors">
                         <div className="flex justify-between items-start gap-2 mb-1">
-                          <span className="text-xs font-bold text-[#1a3a5c] uppercase tracking-wide">{act.tipo}</span>
+                          <span className="text-xs font-bold text-[#1b2a4a] uppercase tracking-wide">{act.tipo}</span>
                           <span className="text-xs text-gray-400 whitespace-nowrap">{act.fecha}</span>
                         </div>
                         <p className="text-gray-700">{act.descripcion}</p>
@@ -258,7 +258,7 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
             {/* Deuda */}
             {expediente.montoDeuda !== undefined && (
               <div className={`rounded border border-gray-200 p-5 ${expediente.montoDeuda === 0 ? 'bg-green-50 border border-green-200' : 'bg-orange-50 border border-orange-200'}`}>
-                <h2 className="font-semibold text-[#1a3a5c] mb-2">Deuda Determinada</h2>
+                <h2 className="font-semibold text-[#1b2a4a] mb-2">Deuda Determinada</h2>
                 <div className={`text-2xl font-bold ${expediente.montoDeuda === 0 ? 'text-green-600' : 'text-orange-600'}`}>
                   {expediente.montoDeuda === 0 ? 'PAGADO' : formatCurrency(expediente.montoDeuda)}
                 </div>
@@ -282,7 +282,7 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
             {/* Acciones */}
             {acciones.length > 0 && (
               <div className="bg-white rounded border border-gray-200 p-5">
-                <h2 className="font-semibold text-[#1a3a5c] mb-3">Acciones Disponibles</h2>
+                <h2 className="font-semibold text-[#1b2a4a] mb-3">Acciones Disponibles</h2>
                 <div className="space-y-2">
                   {acciones.map((accion, idx) => (
                     <button
@@ -298,7 +298,7 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
 
             {/* Documentos */}
             <div className="bg-white rounded border border-gray-200 p-5">
-              <h2 className="font-semibold text-[#1a3a5c] mb-3">Documentos Generados</h2>
+              <h2 className="font-semibold text-[#1b2a4a] mb-3">Documentos Generados</h2>
               <div className="space-y-2 text-sm">
                 {[
                   { nombre: 'Auto de Inicio', fecha: expediente.fechaInicio, tipo: 'PDF' },

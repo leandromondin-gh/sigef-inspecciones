@@ -10,7 +10,7 @@ function formatCurrency(value: number) {
 function StatCard({ label, value, sub, color }: { label: string; value: string | number; sub?: string; color: string }) {
   return (
     <div className={`bg-white rounded p-5 border border-gray-200 border-l-4 ${color}`}>
-      <div className="text-2xl font-bold text-[#1a3a5c]">{value}</div>
+      <div className="text-2xl font-bold text-[#1b2a4a]">{value}</div>
       <div className="text-sm font-medium text-gray-700 mt-1">{label}</div>
       {sub && <div className="text-xs text-gray-400 mt-0.5">{sub}</div>}
     </div>
@@ -73,7 +73,7 @@ export default function Dashboard() {
               <Link key={item.href} href={item.href}
                 className={`${item.color} border rounded p-5 text-center transition-all`}>
                 <div className="text-3xl mb-2">{item.icon}</div>
-                <div className="font-semibold text-[#1a3a5c] text-sm">{item.label}</div>
+                <div className="font-semibold text-[#1b2a4a] text-sm">{item.label}</div>
                 <div className="text-xs text-gray-500 mt-1">{item.desc}</div>
               </Link>
             ))}
@@ -83,7 +83,7 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Estado de expedientes */}
           <div className="bg-white rounded border border-gray-200 p-5">
-            <h2 className="font-semibold text-[#1a3a5c] mb-4 flex items-center gap-2">
+            <h2 className="font-semibold text-[#1b2a4a] mb-4 flex items-center gap-2">
               <span>📋</span> Estado de Expedientes
             </h2>
             <div className="space-y-3">
@@ -95,7 +95,7 @@ export default function Dashboard() {
                   <div className="flex items-center gap-2">
                     <div className="w-24 bg-gray-100 rounded-sm h-1.5">
                       <div
-                        className="bg-[#1a3a5c] h-1.5 rounded-sm"
+                        className="bg-[#1b2a4a] h-1.5 rounded-sm"
                         style={{ width: `${(count / totalExpedientes) * 100}%` }}
                       />
                     </div>
@@ -108,7 +108,7 @@ export default function Dashboard() {
 
           {/* Alarmas */}
           <div className="bg-white rounded border border-gray-200 p-5">
-            <h2 className="font-semibold text-[#1a3a5c] mb-4 flex items-center gap-2">
+            <h2 className="font-semibold text-[#1b2a4a] mb-4 flex items-center gap-2">
               <span>🔔</span> Alarmas Próximas
             </h2>
             <div className="space-y-3">
@@ -126,9 +126,9 @@ export default function Dashboard() {
                 const urgente = diasRestantes !== null && diasRestantes <= 3;
                 return (
                   <Link key={exp.id} href={`/expedientes/${exp.id}`}
-                    className="block border rounded p-3 hover:border-[#1a3a5c] transition-colors">
+                    className="block border rounded p-3 hover:border-[#1b2a4a] transition-colors">
                     <div className="flex justify-between items-start gap-2">
-                      <div className="text-xs font-semibold text-[#1a3a5c] truncate">{exp.numeroExpediente}</div>
+                      <div className="text-xs font-semibold text-[#1b2a4a] truncate">{exp.numeroExpediente}</div>
                       <span className={`text-xs px-1.5 py-0.5 rounded font-bold flex-shrink-0 ${urgente ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'}`}>
                         {diasRestantes !== null ? (diasRestantes <= 0 ? 'VENCIDO' : `${diasRestantes}d`) : '-'}
                       </span>
@@ -143,14 +143,14 @@ export default function Dashboard() {
 
           {/* Actividad reciente */}
           <div className="bg-white rounded border border-gray-200 p-5">
-            <h2 className="font-semibold text-[#1a3a5c] mb-4 flex items-center gap-2">
+            <h2 className="font-semibold text-[#1b2a4a] mb-4 flex items-center gap-2">
               <span>⏱</span> Actividad Reciente
             </h2>
             <div className="space-y-3">
               {recientes.map(exp => (
                 <Link key={exp.id} href={`/expedientes/${exp.id}`}
-                  className="block border rounded p-3 hover:border-[#1a3a5c] transition-colors">
-                  <div className="text-xs font-semibold text-[#1a3a5c]">{exp.numeroExpediente}</div>
+                  className="block border rounded p-3 hover:border-[#1b2a4a] transition-colors">
+                  <div className="text-xs font-semibold text-[#1b2a4a]">{exp.numeroExpediente}</div>
                   <div className="text-xs text-gray-600 mt-0.5 truncate">{exp.empresa.razonSocial}</div>
                   <div className="flex items-center justify-between mt-1">
                     <span className={`text-[10px] px-1.5 py-0.5 rounded-sm font-medium ${ESTADO_COLORS[exp.estado]}`}>
@@ -161,7 +161,7 @@ export default function Dashboard() {
                 </Link>
               ))}
             </div>
-            <Link href="/expedientes" className="block text-center text-sm text-[#1a3a5c] font-medium mt-3 hover:underline">
+            <Link href="/expedientes" className="block text-center text-sm text-[#1b2a4a] font-medium mt-3 hover:underline">
               Ver todos →
             </Link>
           </div>

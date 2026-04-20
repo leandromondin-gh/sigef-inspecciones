@@ -16,7 +16,7 @@ export default function ConfiguracionPage() {
           <div key={item.label} className="bg-white rounded border border-gray-200 p-5 flex items-center gap-4 hover:border border-gray-200 transition-shadow cursor-pointer">
             <div className="text-3xl">{item.icon}</div>
             <div>
-              <div className="font-semibold text-[#1a3a5c]">{item.label}</div>
+              <div className="font-semibold text-[#1b2a4a]">{item.label}</div>
               <div className="text-sm text-gray-500">{item.desc}</div>
             </div>
           </div>

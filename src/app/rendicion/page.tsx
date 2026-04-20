@@ -17,21 +17,21 @@ export default function RendicionPage() {
       <div className="p-6 space-y-6">
         <div className="grid grid-cols-3 gap-4">
           <div className="bg-white rounded border border-gray-200 p-5 border-l-4 border-orange-500">
-            <div className="text-2xl font-bold text-[#1a3a5c]">{formatCurrency(totalDeuda)}</div>
+            <div className="text-2xl font-bold text-[#1b2a4a]">{formatCurrency(totalDeuda)}</div>
             <div className="text-sm text-gray-600 mt-1">Deuda Total Determinada</div>
           </div>
           <div className="bg-white rounded border border-gray-200 p-5 border-l-4 border-teal-500">
-            <div className="text-2xl font-bold text-[#1a3a5c]">{enGestion.length}</div>
+            <div className="text-2xl font-bold text-[#1b2a4a]">{enGestion.length}</div>
             <div className="text-sm text-gray-600 mt-1">En Gestión de Cobro</div>
           </div>
           <div className="bg-white rounded border border-gray-200 p-5 border-l-4 border-green-500">
-            <div className="text-2xl font-bold text-[#1a3a5c]">{cobrados.length}</div>
+            <div className="text-2xl font-bold text-[#1b2a4a]">{cobrados.length}</div>
             <div className="text-sm text-gray-600 mt-1">Expedientes Cobrados</div>
           </div>
         </div>
 
         <div className="bg-white rounded border border-gray-200 p-5">
-          <h2 className="font-semibold text-[#1a3a5c] mb-4">Deuda por Expediente</h2>
+          <h2 className="font-semibold text-[#1b2a4a] mb-4">Deuda por Expediente</h2>
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gray-100">
@@ -44,7 +44,7 @@ export default function RendicionPage() {
             <tbody className="divide-y divide-gray-50">
               {determinados.map(exp => (
                 <tr key={exp.id}>
-                  <td className="py-2 font-medium text-[#1a3a5c]">{exp.numeroExpediente}</td>
+                  <td className="py-2 font-medium text-[#1b2a4a]">{exp.numeroExpediente}</td>
                   <td className="py-2 text-gray-600">{exp.empresa.razonSocial}</td>
                   <td className="py-2 text-gray-500">{exp.estado.replace(/_/g, ' ')}</td>
                   <td className="py-2 text-right font-semibold text-orange-600">{formatCurrency(exp.montoDeuda!)}</td>

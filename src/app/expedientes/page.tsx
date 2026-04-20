@@ -56,7 +56,7 @@ export default function ExpedientesPage() {
               placeholder="N° expediente, empresa, CUIT, carátula..."
               value={busqueda}
               onChange={e => setBusqueda(e.target.value)}
-              className="w-full border border-gray-200 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c]"
+              className="w-full border border-gray-200 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1b2a4a]/30 focus:border-[#1b2a4a]"
             />
           </div>
           <div>
@@ -64,7 +64,7 @@ export default function ExpedientesPage() {
             <select
               value={filtroEstado}
               onChange={e => setFiltroEstado(e.target.value as EstadoExpediente | 'TODOS')}
-              className="border border-gray-200 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c] bg-white"
+              className="border border-gray-200 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1b2a4a]/30 focus:border-[#1b2a4a] bg-white"
             >
               <option value="TODOS">Todos los estados</option>
               {Object.entries(ESTADO_LABELS).map(([key, label]) => (
@@ -77,7 +77,7 @@ export default function ExpedientesPage() {
             <select
               value={filtroInspector}
               onChange={e => setFiltroInspector(e.target.value)}
-              className="border border-gray-200 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]/30 focus:border-[#1a3a5c] bg-white"
+              className="border border-gray-200 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1b2a4a]/30 focus:border-[#1b2a4a] bg-white"
             >
               <option value="TODOS">Todos</option>
               {inspectores.map(i => (
@@ -99,7 +99,7 @@ export default function ExpedientesPage() {
         <div className="bg-white rounded border border-gray-200 overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-[#1a3a5c] text-white">
+              <tr className="bg-gray-100 text-gray-600 border-b-2 border-[#1b2a4a]">
                 <th className="text-left px-4 py-3 font-semibold text-xs uppercase tracking-wide">N° Expediente</th>
                 <th className="text-left px-4 py-3 font-semibold text-xs uppercase tracking-wide">Empresa / CUIT</th>
                 <th className="text-left px-4 py-3 font-semibold text-xs uppercase tracking-wide">Requirente</th>
@@ -121,7 +121,7 @@ export default function ExpedientesPage() {
               {expedientesFiltrados.map(exp => (
                 <tr key={exp.id} className="hover:bg-gray-50 transition-colors">
                   <td className="px-4 py-3">
-                    <div className="font-semibold text-[#1a3a5c]">{exp.numeroExpediente}</div>
+                    <div className="font-semibold text-[#1b2a4a]">{exp.numeroExpediente}</div>
                     <div className="text-xs text-gray-400 flex items-center gap-1 mt-0.5">
                       <span>📄 {exp.folios} folios</span>
                       {exp.tieneAlarma && <span className="text-red-500 font-bold">🔔</span>}
@@ -155,7 +155,7 @@ export default function ExpedientesPage() {
                   <td className="px-4 py-3">
                     <Link
                       href={`/expedientes/${exp.id}`}
-                      className="text-[#1a3a5c] hover:text-[#0072BC] font-medium text-xs border border-current rounded px-2 py-1 transition-colors whitespace-nowrap"
+                      className="text-[#1b2a4a] hover:text-[#0072BC] font-medium text-xs border border-current rounded px-2 py-1 transition-colors whitespace-nowrap"
                     >
                       Ver →
                     </Link>
