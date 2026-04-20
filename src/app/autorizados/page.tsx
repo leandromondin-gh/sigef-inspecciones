@@ -22,7 +22,7 @@ export default function AutorizadosPage() {
         title="Autorizados"
         subtitle="Gestión de usuarios y permisos de acceso"
         actions={
-          <button className="bg-[#f0a500] hover:bg-[#d4920a] text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors">
+          <button className="bg-[#0072BC] hover:bg-[#005f9e] text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors">
             + Nuevo Usuario
           </button>
         }

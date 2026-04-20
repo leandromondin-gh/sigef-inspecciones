@@ -44,7 +44,7 @@ export default function Dashboard() {
         actions={
           <Link
             href="/expedientes/nuevo"
-            className="bg-[#f0a500] hover:bg-[#d4920a] text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors flex items-center gap-2"
+            className="bg-[#0072BC] hover:bg-[#005f9e] text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors flex items-center gap-2"
           >
             <span>＋</span> Nueva Inspección
           </Link>
@@ -53,7 +53,7 @@ export default function Dashboard() {
 
       <div className="p-6 space-y-6">
         {/* KPI Cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <StatCard label="Expedientes Activos" value={expedientesActivos} sub={`de ${totalExpedientes} totales`} color="border-blue-500" />
           <StatCard label="Con Alarma Activa" value={expedientesConAlarma} sub="Próximos vencimientos" color="border-red-500" />
           <StatCard label="Deuda Determinada" value={formatCurrency(totalDeuda)} sub="Capital + intereses" color="border-orange-500" />
@@ -63,7 +63,7 @@ export default function Dashboard() {
         {/* Quick Access */}
         <div>
           <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Acceso Rápido</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { href: '/expedientes/nuevo', icon: '📄', label: 'Nueva Inspección', desc: 'Iniciar expediente', color: 'bg-blue-50 border-blue-200 hover:bg-blue-100' },
               { href: '/rendicion', icon: '📊', label: 'Rendición de Cuentas', desc: 'Panel contable', color: 'bg-green-50 border-green-200 hover:bg-green-100' },

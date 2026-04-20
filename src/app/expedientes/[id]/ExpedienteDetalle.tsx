@@ -129,7 +129,7 @@ export default function ExpedienteDetallePage({ params }: { params: Promise<{ id
                 <div key={estado} className="flex items-center gap-1 flex-shrink-0">
                   <div className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                     activo
-                      ? 'bg-[#f0a500] text-white shadow-sm'
+                      ? 'bg-[#0072BC] text-white shadow-sm'
                       : completado
                       ? 'bg-[#1a3a5c] text-white'
                       : 'bg-gray-100 text-gray-400'

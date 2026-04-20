@@ -96,7 +96,7 @@ export default function NuevaInspeccionPage() {
               <div className="flex items-center gap-2">
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${
                   paso === p.num
-                    ? 'bg-[#f0a500] text-white'
+                    ? 'bg-[#0072BC] text-white'
                     : paso > p.num
                     ? 'bg-[#1a3a5c] text-white'
                     : 'bg-gray-200 text-gray-500'
@@ -330,7 +330,7 @@ export default function NuevaInspeccionPage() {
             ) : (
               <button
                 onClick={handleGuardar}
-                className="px-6 py-2 bg-[#f0a500] text-white rounded-lg text-sm font-bold hover:bg-[#d4920a]"
+                className="px-6 py-2 bg-[#0072BC] text-white rounded-lg text-sm font-bold hover:bg-[#005f9e]"
               >
                 ✓ Iniciar Expediente
               </button>

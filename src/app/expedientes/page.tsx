@@ -39,7 +39,7 @@ export default function ExpedientesPage() {
         actions={
           <Link
             href="/expedientes/nuevo"
-            className="bg-[#f0a500] hover:bg-[#d4920a] text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors flex items-center gap-2"
+            className="bg-[#0072BC] hover:bg-[#005f9e] text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors flex items-center gap-2"
           >
             <span>＋</span> Nueva Inspección
           </Link>
@@ -96,7 +96,7 @@ export default function ExpedientesPage() {
         </div>
 
         {/* Tabla */}
-        <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+        <div className="bg-white rounded-xl shadow-sm overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="bg-[#1a3a5c] text-white">
@@ -155,7 +155,7 @@ export default function ExpedientesPage() {
                   <td className="px-4 py-3">
                     <Link
                       href={`/expedientes/${exp.id}`}
-                      className="text-[#1a3a5c] hover:text-[#f0a500] font-medium text-xs border border-current rounded px-2 py-1 transition-colors whitespace-nowrap"
+                      className="text-[#1a3a5c] hover:text-[#0072BC] font-medium text-xs border border-current rounded px-2 py-1 transition-colors whitespace-nowrap"
                     >
                       Ver →
                     </Link>
