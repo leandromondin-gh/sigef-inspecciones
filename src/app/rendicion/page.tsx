@@ -8,7 +8,7 @@ function formatCurrency(value: number) {
 export default function RendicionPage() {
   const totalDeuda = mockExpedientes.reduce((acc, e) => acc + (e.montoDeuda ?? 0), 0);
   const cobrados = mockExpedientes.filter(e => e.estado === 'FINALIZADO' && e.montoDeuda === 0);
-  const enGestion = mockExpedientes.filter(e => e.estado === 'D_COBRO_CIERRE');
+  const enGestion = mockExpedientes.filter(e => e.estado === 'EN_EJECUCION');
   const determinados = mockExpedientes.filter(e => e.montoDeuda && e.montoDeuda > 0 && e.estado !== 'FINALIZADO');
 
   return (
