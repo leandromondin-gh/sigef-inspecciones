@@ -236,13 +236,8 @@ export default function NuevaInspeccionPage() {
                     className="w-full border border-gray-200 rounded px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1b2a4a]/30 focus:border-[#1b2a4a] bg-white"
                   >
                     <option value="">Seleccionar CCT...</option>
-                    <option value="CCT 402/05 (Neumáticos)">CCT 402/05 (Neumáticos) - Empleados Comercio</option>
-                    <option value="CCT 375/04 (Industria del Caucho)">CCT 375/04 (Industria del Caucho) - Mecánicos y Afines (SMATA)</option>
-                    <option value="
-                    <option value="
-                    <option value="
-                    <option value="
-                    <option value="OTRO">Otro...</option>
+                    <option value="CCT 402/05 (Neumáticos)">CCT 402/05 — Neumáticos</option>
+                    <option value="CCT 375/04 (Industria del Caucho)">CCT 375/04 — Industria del Caucho</option>
                   </select>
                 </div>
                 <div>
