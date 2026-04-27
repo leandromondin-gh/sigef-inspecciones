@@ -236,12 +236,12 @@ export default function NuevaInspeccionPage() {
                     className="w-full border border-gray-200 rounded px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1b2a4a]/30 focus:border-[#1b2a4a] bg-white"
                   >
                     <option value="">Seleccionar CCT...</option>
-                    <option value="CCT 547/03">CCT 547/03 - Empleados Comercio</option>
-                    <option value="CCT 40/89">CCT 40/89 - Mecánicos y Afines (SMATA)</option>
-                    <option value="CCT 122/75">CCT 122/75 - Sanidad</option>
-                    <option value="CCT 76/75">CCT 76/75 - Construcción</option>
-                    <option value="CCT 486/07">CCT 486/07 - Farmacia</option>
-                    <option value="CCT 130/75">CCT 130/75 - Bancarios</option>
+                    <option value="CCT 402/05 (Neumáticos)">CCT 402/05 (Neumáticos) - Empleados Comercio</option>
+                    <option value="CCT 375/04 (Industria del Caucho)">CCT 375/04 (Industria del Caucho) - Mecánicos y Afines (SMATA)</option>
+                    <option value="
+                    <option value="
+                    <option value="
+                    <option value="
                     <option value="OTRO">Otro...</option>
                   </select>
                 </div>

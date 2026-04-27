@@ -1,11 +1,17 @@
 export type EstadoExpediente =
-  | 'A_INICIO'
-  | 'B_INSTRUCCION'
-  | 'C_DETERMINACION'
-  | 'C1_DEUDA_CONSENTIDA'
-  | 'C2_IMPUGNACION'
-  | 'D_COBRO_CIERRE'
-  | 'FINALIZADO';
+  | 'INICIO'
+  | 'EN_INSTRUCCION'
+  | 'CON_REQUERIMIENTO'
+  | 'DEUDA_DETERMINADA'
+  | 'CON_IMPUGNACION'
+  | 'PLAZO_NOTIFICACION'
+  | 'CONSENTIDA'
+  | 'EN_EJECUCION'
+  | 'OTRO'
+  | 'FINALIZADO'
+  | 'SUSPENDIDO';
+
+export type EstadoDocumento = 'BORRADOR' | 'FIRMADO';
 
 export type RolUsuario = 'ADMINISTRADOR' | 'INSPECTOR' | 'LETRADO' | 'REQUIRENTE';
 
@@ -13,6 +19,7 @@ export interface Usuario {
   id: string;
   nombre: string;
   apellido: string;
+  titulo?: string;
   rol: RolUsuario;
   email: string;
 }
@@ -23,6 +30,7 @@ export interface Requirente {
   tipo: 'SINDICATO' | 'OBRA_SOCIAL';
   cuit: string;
   domicilio: string;
+  personeria?: string;
 }
 
 export interface Empresa {
@@ -31,6 +39,43 @@ export interface Empresa {
   domicilio: string;
   domicilioComercial?: string;
   actividadPrincipal?: string;
+}
+
+export interface Actuacion {
+  id: string;
+  tipo: string;
+  descripcion: string;
+  fecha: string;
+  folio: string;
+  estado: EstadoDocumento;
+  usuario: string;
+  archivoPdf?: string;
+}
+
+export interface Interviniente {
+  id: string;
+  rol: 'RESPONSABLE' | 'CONTADOR' | 'ABOGADO' | 'RRHH' | 'OTRO';
+  nombre: string;
+  email?: string;
+  telefono?: string;
+  observaciones?: string;
+}
+
+export interface Pago {
+  id: string;
+  fecha: string;
+  monto: number;
+  descripcion: string;
+  vinculadoA?: string;
+}
+
+export interface Notificacion {
+  id: string;
+  tipo: 'ELECTRONICA' | 'PERSONAL' | 'CARTA_DOCUMENTO';
+  fecha: string;
+  descripcion: string;
+  estado: 'PENDIENTE' | 'ENVIADA' | 'INCORPORADA';
+  documentoVinculado?: string;
 }
 
 export interface Expediente {
@@ -51,21 +96,34 @@ export interface Expediente {
 }
 
 export const ESTADO_LABELS: Record<EstadoExpediente, string> = {
-  A_INICIO: 'A - Inicio',
-  B_INSTRUCCION: 'B - Instrucción',
-  C_DETERMINACION: 'C - Determinación',
-  C1_DEUDA_CONSENTIDA: 'C.1 - Deuda Consentida',
-  C2_IMPUGNACION: 'C.2 - Impugnación',
-  D_COBRO_CIERRE: 'D - Cobro y Cierre',
+  INICIO: 'Inicio',
+  EN_INSTRUCCION: 'En Instrucción',
+  CON_REQUERIMIENTO: 'Con Requerimiento',
+  DEUDA_DETERMINADA: 'Deuda Determinada',
+  CON_IMPUGNACION: 'Con Impugnación',
+  PLAZO_NOTIFICACION: 'Plazo Notificación',
+  CONSENTIDA: 'Consentida',
+  EN_EJECUCION: 'En Ejecución',
+  OTRO: 'Otro',
   FINALIZADO: 'Finalizado',
+  SUSPENDIDO: 'Suspendido',
 };
 
 export const ESTADO_COLORS: Record<EstadoExpediente, string> = {
-  A_INICIO: 'bg-blue-100 text-blue-800',
-  B_INSTRUCCION: 'bg-yellow-100 text-yellow-800',
-  C_DETERMINACION: 'bg-orange-100 text-orange-800',
-  C1_DEUDA_CONSENTIDA: 'bg-purple-100 text-purple-800',
-  C2_IMPUGNACION: 'bg-red-100 text-red-800',
-  D_COBRO_CIERRE: 'bg-teal-100 text-teal-800',
+  INICIO: 'bg-blue-100 text-blue-800',
+  EN_INSTRUCCION: 'bg-yellow-100 text-yellow-800',
+  CON_REQUERIMIENTO: 'bg-orange-100 text-orange-800',
+  DEUDA_DETERMINADA: 'bg-red-100 text-red-800',
+  CON_IMPUGNACION: 'bg-purple-100 text-purple-800',
+  PLAZO_NOTIFICACION: 'bg-pink-100 text-pink-800',
+  CONSENTIDA: 'bg-teal-100 text-teal-800',
+  EN_EJECUCION: 'bg-indigo-100 text-indigo-800',
+  OTRO: 'bg-gray-100 text-gray-700',
   FINALIZADO: 'bg-green-100 text-green-800',
+  SUSPENDIDO: 'bg-gray-200 text-gray-600',
 };
+
+export const CCT_OPTIONS = [
+  'CCT 402/05 (Neumáticos)',
+  'CCT 375/04 (Industria del Caucho)',
+];

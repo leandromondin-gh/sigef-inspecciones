@@ -26,6 +26,12 @@ const navSections = [
     ],
   },
   {
+    label: 'Recursos',
+    items: [
+      { href: '/documentacion', label: 'Documentación General' },
+    ],
+  },
+  {
     label: 'Sistema',
     items: [
       { href: '/autorizados', label: 'Autorizados' },
